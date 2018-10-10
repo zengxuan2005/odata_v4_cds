@@ -1,0 +1,26 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	
+	<parent>
+		<groupId>com.sap.cloud.servicesdk.prov</groupId>
+    	<artifactId>projects-parent</artifactId>
+		<version>1.11.4</version>
+	</parent>
+	
+	<groupId>cxs.ana</groupId>
+	<artifactId>odata_v4_cds</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>war</packaging>
+	
+	<properties>
+	    <!-- Name of the package containing the OData service provisioning code  -->
+	   <packageName>cxs.ana.odata_v4_cds</packageName>
+	</properties>
+	
+	<name>This archetype is based on the cloud-sdk-odatav4-quickstart archetype and additionally contains a sample mash-up service consuming data from OData V2 and CDS data sources.</name>
+	<build>
+		<finalName>odata_v4_cds</finalName>
+	</build>
+
+</project>

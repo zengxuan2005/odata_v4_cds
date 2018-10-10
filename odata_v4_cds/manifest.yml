@@ -1,0 +1,13 @@
+---
+applications:
+- name: odata_v4_cds_dev_i042866trial
+  memory: 256M
+  host: odatav4cdsdevi042866trial
+  path: target/odata_v4_cds.war
+  buildpack: sap_java_buildpack
+  env:
+    destinations: '[{name: "ErpQueryEndpoint", url: "https://sapes4.sapdevcenter.com",
+      username: "", password: ""}]'
+  services:
+  - ZHELLOWORLDMTA-hditinyhdb-I042866-EBeEVhpx7aA8oNK4
+  domain: cfapps.eu10.hana.ondemand.com

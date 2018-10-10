@@ -1,0 +1,28 @@
+
+context EPMSample {
+
+	  type TSalesOrderID:  String(32);	
+	  type TSOLineItemID:  String(32);		  
+      type TItemPosition:  Integer;
+      type TProductID: 	   String(32);         
+      
+
+    entity SalesOrders{
+       key SalesOrderID:  TSalesOrderID not null;
+       	   Note:       String(255);
+       	   CustomerName: String(255);
+           GrossAmount: Integer; 
+    }
+
+    entity SalesOrderLineItems{
+       key SOLineItemID:    TSOLineItemID not null;
+		   SalesOrderID:    TSalesOrderID ;
+           ItemPosition: 	TItemPosition ;
+           ProductID:       TProductID ;
+           Quantity:        Integer;
+           GrossAmount: 	Integer;
+          
+    }
+	
+	
+};

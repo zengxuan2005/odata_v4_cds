@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+	<edmx:DataServices>
+		<Schema Namespace="EPMSample" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+			<EntityType Name="Product">
+				<Key>
+					<PropertyRef Name="ProductID" />
+				</Key>
+				<Property Name="ProductID" Type="Edm.String"/>
+                <Property Name="Name" Type="Edm.String"/>
+                <Property Name="Description" Type="Edm.String"/>
+                <Property Name="Category" Type="Edm.String"/>	
+                <NavigationProperty Name="SalesOrderLineItems" Type="Collection(EPMSample.SalesOrderLineItem)" Partner="Product"/>			
+			</EntityType>
+			<EntityType Name="SalesOrder">
+				<Key>
+					<PropertyRef Name="SalesOrderID" />
+				</Key>
+				<Property Name="SalesOrderID" Type="Edm.String"/>
+                <Property Name="Note" Type="Edm.String"/>
+                <Property Name="CustomerName" Type="Edm.String"/>
+                <Property Name="GrossAmount" Type="Edm.Int32"/>
+				<NavigationProperty Name="SalesOrderLineItems" Type="Collection(EPMSample.SalesOrderLineItem)" Partner="SalesOrder"/>
+			</EntityType>
+			<EntityType Name="SalesOrderLineItem">
+				<Key>
+					<PropertyRef Name="SOLineItemID" />
+				</Key>
+				<Property Name="SOLineItemID" Type="Edm.String"/>
+				<Property Name="SalesOrderID" Type="Edm.String"/>
+                <Property Name="ItemPosition" Type="Edm.Int32"/>
+                <Property Name="ProductID" Type="Edm.String"/>
+                <Property Name="Quantity" Type="Edm.Int32"/>
+				<Property Name="GrossAmount" Type="Edm.Int32"/>
+				<NavigationProperty Name="SalesOrder" Type="EPMSample.SalesOrder" Nullable="false" Partner="SalesOrderLineItems" />
+				<NavigationProperty Name="Product" Type="EPMSample.Product" Nullable="false" Partner="SalesOrderLineItems" />
+			</EntityType>
+			<EntityContainer Name="EntityContainer" p4:LazyLoadingEnabled="true" xmlns:p4="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
+				<EntitySet Name="Products" EntityType="EPMSample.Product">
+						<NavigationPropertyBinding Path="SalesOrderLineItems"
+                                    Target="SalesOrderLineItems" />
+                </EntitySet>
+				<EntitySet Name="SalesOrders" EntityType="EPMSample.SalesOrder">
+					<NavigationPropertyBinding Path="SalesOrderLineItems"
+                                    Target="SalesOrderLineItems" />
+                </EntitySet>
+				<EntitySet Name="SalesOrderLineItems" EntityType="EPMSample.SalesOrderLineItem">
+					<NavigationPropertyBinding Path="SalesOrder"
+                                    Target="SalesOrders" />
+                    <NavigationPropertyBinding Path="Product"
+                                    Target="Products" />
+                </EntitySet>
+			</EntityContainer>
+		</Schema>
+	</edmx:DataServices>
+</edmx:Edmx>
